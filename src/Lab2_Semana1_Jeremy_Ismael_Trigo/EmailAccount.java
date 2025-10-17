@@ -19,12 +19,12 @@ public class EmailAccount {
     String nombreUsuario;
     Email[] inbox;
 
-    // Constructor
+    
     public EmailAccount(String direccionEmail, String password, String nombreUsuario) {
         this.direccionEmail = direccionEmail;
         this.password = password;
         this.nombreUsuario = nombreUsuario;
-        this.inbox = new Email[10]; // 10 espacios disponibles
+        this.inbox = new Email[10]; 
     }
 
     public String getDireccionEmail() {
@@ -39,7 +39,7 @@ public class EmailAccount {
         return nombreUsuario;
     }
 
-    // Guardar correo nuevo
+    
     public boolean recibirEmail(Email em) {
         for (int i = 0; i < inbox.length; i++) {
             if (inbox[i] == null) {
@@ -47,10 +47,10 @@ public class EmailAccount {
                 return true;
             }
         }
-        return false; // inbox lleno
+        return false; 
     }
 
-    // Mostrar la bandeja
+    
     public void printInbox() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         Calendar ahora = Calendar.getInstance();
@@ -76,13 +76,13 @@ public class EmailAccount {
         JOptionPane.showMessageDialog(null, sb.toString(), "BANDEJA DE ENTRADA", JOptionPane.INFORMATION_MESSAGE);
     }
 
-    // Leer correo por posición
+    
     public void leerEmail(int pos) {
         if (pos < 0 || pos >= inbox.length || inbox[pos] == null) {
             JOptionPane.showMessageDialog(null, "Correo no existe.");
         } else {
-            inbox[pos].mostrar();  // Muestra los datos del correo
-            inbox[pos].leido = true; // Marca como leído
+            inbox[pos].mostrar();  
+            inbox[pos].leido = true; 
         }
     }
 
