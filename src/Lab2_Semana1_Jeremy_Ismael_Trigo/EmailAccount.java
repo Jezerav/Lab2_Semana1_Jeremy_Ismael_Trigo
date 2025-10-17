@@ -65,10 +65,10 @@ public class EmailAccount {
         for (int i = 0; i < inbox.length; i++) {
             if (inbox[i] != null) {
                 sb.append((i + 1)).append(" - ")
-                  .append(inbox[i].getEmisor()).append(" - ")
-                  .append(inbox[i].getAsunto()).append(" - ")
-                  .append(inbox[i].isLeido() ? "LEÍDO" : "SIN LEER")
-                  .append("\n");
+                        .append(inbox[i].getEmisor()).append(" - ")
+                        .append(inbox[i].getAsunto()).append(" - ")
+                        .append(inbox[i].isLeido() ? "LEÍDO" : "SIN LEER")
+                        .append("\n");
             }
         }
 
@@ -85,7 +85,71 @@ public class EmailAccount {
             inbox[pos].leido = true; // Marca como leído
         }
     }
-    
+
+    public int contarSinLeerRecursivo(int Cant) {
+        if (Cant >= inbox.length) {
+            return 0;
+        }
+
+        int cuentaActual = 0;
+
+        if (inbox[Cant] != null) {
+            if (inbox[Cant].isLeido() == false) {
+                cuentaActual = 1;
+            }
+        }
+
+        int resultadoRestante = contarSinLeerRecursivo(Cant + 1);
+
+        return cuentaActual + resultadoRestante;
+    }
+
+    public void buscarPorEmisorRecursivo(String emisorBuscado, int Cant) {
+        if (Cant >= inbox.length) {
+            JOptionPane.showMessageDialog(null, "Busqueda por emisor finalizada.");
+            return;
+        }
+
+        if (inbox[Cant] != null) {
+            if (inbox[Cant].getEmisor().equalsIgnoreCase(emisorBuscado)) {
+                JOptionPane.showMessageDialog(null,
+                        "¡ENCONTRADO en POSICION " + (Cant + 1) + "!"
+                        + "\nAsunto: " + inbox[Cant].getAsunto());
+            }
+        }
+
+        buscarPorEmisorRecursivo(emisorBuscado, Cant + 1);
+    }
+
+    public void eliminarCorreosLeidosRecursivo(int Cant) {
+        if (Cant >= inbox.length) {
+            JOptionPane.showMessageDialog(null, "Proceso de eliminacion terminado.");
+            return;
+        }
+
+        if (inbox[Cant] != null) {
+            if (inbox[Cant].isLeido() == true) {
+                inbox[Cant] = null;
+            }
+        }
+
+        eliminarCorreosLeidosRecursivo(Cant + 1);
+    }
+
+    public int contarTotalesRecursivo(int Cant) {
+        if (Cant == inbox.length) {
+            return 0;
+        }
+
+        int cuentaActual = 0;
+        if (inbox[Cant] != null) {
+            cuentaActual = 1;
+        }
+
+        int resultadoRestante = contarTotalesRecursivo(Cant + 1);
+
+        return cuentaActual + resultadoRestante;
+    }
 
     private int contarSinLeer(int i) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -94,7 +158,5 @@ public class EmailAccount {
     private int contarTotales(int i) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
-}
 
-   
+}
