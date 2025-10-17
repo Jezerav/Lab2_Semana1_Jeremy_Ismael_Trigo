@@ -52,12 +52,7 @@ public class Email {
     
     public void mostrar(){
          JOptionPane.showMessageDialog(null,"EMISOR: "+emisor+"\nASUNTO: "+asunto+"\nCONTENIDO:"+contenido+"\nFECHA: "+FH.getTime());
-        System.out.println("EMISOR: "+emisor+"\nASUNTO: "+asunto+"\nCONTENIDO:"+contenido+"\nFECHA: "+FH.getTime());
-        
     }
-    public static void main(String[] args) {
-        Email e=new Email("sapo","perro","iguana",false);
-        e.mostrar();
-    }
+
 
 }
