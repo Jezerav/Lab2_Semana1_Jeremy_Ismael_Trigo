@@ -85,6 +85,7 @@ public class EmailAccount {
             inbox[pos].leido = true; // Marca como leído
         }
     }
+    
 
     private int contarSinLeer(int i) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
